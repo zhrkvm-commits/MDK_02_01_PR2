@@ -1,0 +1,54 @@
+using System;
+using System.Collections.Generic;
+
+namespace DocumentFlow.Tasks
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            const int DIVISOR1 = 133;
+            const int REMAINDER1 = 125;
+            const int DIVISOR2 = 134;
+            const int REMAINDER2 = 111;
+            const int MIN_VALUE = 1000;
+            const int MAX_VALUE = 9999;
+
+            Console.WriteLine("=== Поиск четырёхзначных чисел ===");
+            Console.WriteLine($"Условие: x mod {DIVISOR1} = {REMAINDER1}");
+            Console.WriteLine($"         x mod {DIVISOR2} = {REMAINDER2}");
+            Console.WriteLine($"Диапазон: [{MIN_VALUE}; {MAX_VALUE}]");
+            Console.WriteLine(new string('-', 40));
+
+            List<int> foundNumbers = new List<int>();
+
+            for (int x = MIN_VALUE; x <= MAX_VALUE; x++)
+            {
+                if (x % DIVISOR1 == REMAINDER1 && x % DIVISOR2 == REMAINDER2)
+                {
+                    foundNumbers.Add(x);
+                }
+            }
+
+            if (foundNumbers.Count == 0)
+            {
+                Console.WriteLine("Чисел, удовлетворяющих условию, не найдено.");
+            }
+            else
+            {
+                Console.WriteLine($"Найдено чисел: {foundNumbers.Count}");
+                Console.WriteLine("Результаты:");
+                foreach (int number in foundNumbers)
+                {
+                    Console.WriteLine($"  {number}  ( {number} mod {DIVISOR1} = {number % DIVISOR1}, " +
+                                      $"{number} mod {DIVISOR2} = {number % DIVISOR2} )");
+                }
+            }
+
+            Console.WriteLine(new string('-', 40));
+            Console.WriteLine("Нажмите любую клавишу для выхода...");
+            Console.ReadKey();
+        }
+    }
+}
